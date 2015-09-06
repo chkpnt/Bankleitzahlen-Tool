@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2228595A-D44
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{34CA6D79-E9F1-4F71-855C-B3DE8245E249}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Models", "src\Bankleitzahlen.Models\Bankleitzahlen.Models.csproj", "{E20F2568-F061-4000-9794-BF6757CF2426}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Models.Tests", "test\Bankleitzahlen.Models.Tests\Bankleitzahlen.Models.Tests.csproj", "{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Lizenzen.Tests", "test\Bankleitzahlen.Lizenzen.Tests\Bankleitzahlen.Lizenzen.Tests.csproj", "{2E3B53D9-AF29-434D-8F2F-4A7C3E0B3C6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Lizenzen", "src\Bankleitzahlen.Lizenzen\Bankleitzahlen.Lizenzen.csproj", "{DCFBC030-1821-40A4-A81A-164DD128CCB2}"
@@ -17,6 +21,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E20F2568-F061-4000-9794-BF6757CF2426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E20F2568-F061-4000-9794-BF6757CF2426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E20F2568-F061-4000-9794-BF6757CF2426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E20F2568-F061-4000-9794-BF6757CF2426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E3B53D9-AF29-434D-8F2F-4A7C3E0B3C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E3B53D9-AF29-434D-8F2F-4A7C3E0B3C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E3B53D9-AF29-434D-8F2F-4A7C3E0B3C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,6 +42,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{E20F2568-F061-4000-9794-BF6757CF2426} = {2228595A-D448-4841-AFE9-449B4EB33715}
+		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9} = {34CA6D79-E9F1-4F71-855C-B3DE8245E249}
 		{2E3B53D9-AF29-434D-8F2F-4A7C3E0B3C6A} = {34CA6D79-E9F1-4F71-855C-B3DE8245E249}
 		{DCFBC030-1821-40A4-A81A-164DD128CCB2} = {2228595A-D448-4841-AFE9-449B4EB33715}
 	EndGlobalSection
