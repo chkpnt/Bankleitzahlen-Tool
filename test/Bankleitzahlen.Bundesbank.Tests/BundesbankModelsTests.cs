@@ -2,7 +2,9 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -73,6 +75,20 @@ namespace Bankleitzahlen.Bundesbank.Tests
             var eintrag = _engine.ReadStringAsList(zeile).Single();
 
             Assert.That(eintrag.PAN, Is.Null);
+        }
+
+        [Test]
+        public void Bundesbank_Models_KompletteDatei()
+        {
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Bankleitzahlen.Bundesbank.Tests.Resources.blz_2015_09_07_txt.txt"))
+            using (var reader = new StreamReader(stream))
+            {
+                var einträge = _engine.ReadStreamAsList(reader, -1);
+
+                Assert.That(einträge, Has.Count.EqualTo(18424));
+                Assert.That(einträge.First().Bezeichnung, Is.EqualTo("Bundesbank"));
+                Assert.That(einträge.Last().Ort, Is.EqualTo("Gelenau, Erzgeb"));
+            }
         }
     }
 }
