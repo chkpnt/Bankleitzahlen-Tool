@@ -62,5 +62,15 @@ namespace Bankleitzahlen.Bundesbank.Tests
             Assert.That(eintrag.Bankleitzahlenlöschung, Is.False);
             Assert.That(eintrag.Nachfolgebankleitzahl, Is.Null);
         }
+
+        [Test]
+        public void Bundesbank_Models_ZeileOhnePAN()
+        {
+            var zeile = "100196101Dexia Kommunalbank Deutschland                            10969Berlin                             Dexia Berlin                    DXIADEBBXXX09055273U000000000";
+
+            var eintrag = _engine.ReadStringAsList(zeile).Single();
+
+            Assert.That(eintrag.PAN, Is.Null);
+        }
     }
 }

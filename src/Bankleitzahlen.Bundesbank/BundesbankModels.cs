@@ -36,7 +36,7 @@ namespace Bankleitzahlen.Bundesbank
         public string Kurzbezeichnung;
 
         [FieldFixedLength(5)]
-        public int PAN;
+        public int? PAN;
 
         [FieldFixedLength(11)]
         [FieldConverter(typeof(EmptyStringIsNullConverter))]
