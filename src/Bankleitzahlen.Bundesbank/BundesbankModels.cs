@@ -43,7 +43,7 @@ namespace Bankleitzahlen.Bundesbank
         public string BIC;
 
         [FieldFixedLength(2)]
-        public int Prüfzifferberechnungsmethode;
+        public string Prüfzifferberechnungsmethode;
 
         [FieldFixedLength(6)]
         public int Datensatznummer;

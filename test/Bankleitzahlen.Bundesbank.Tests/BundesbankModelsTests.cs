@@ -34,7 +34,7 @@ namespace Bankleitzahlen.Bundesbank.Tests
             Assert.That(eintrag.Kurzbezeichnung, Is.EqualTo("Raiffbk Kallmünz -alt-"));
             Assert.That(eintrag.PAN, Is.EqualTo(67232));
             Assert.That(eintrag.BIC, Is.EqualTo("GENODEF1KLM"));
-            Assert.That(eintrag.Prüfzifferberechnungsmethode, Is.EqualTo(88));
+            Assert.That(eintrag.Prüfzifferberechnungsmethode, Is.EqualTo("88"));
             Assert.That(eintrag.Datensatznummer, Is.EqualTo(27595));
             Assert.That(eintrag.Änderungskennzeichen, Is.EqualTo("U"));
             Assert.That(eintrag.Bankleitzahlenlöschung, Is.True);
@@ -48,6 +48,10 @@ namespace Bankleitzahlen.Bundesbank.Tests
 
             var eintrag = _engine.ReadStringAsList(zeile).Single();
 
+            Assert.That(eintrag.BIC, Is.Null);
+            Assert.That(eintrag.Nachfolgebankleitzahl, Is.Null);
+
+            // Für den Test optionale Asserts:
             Assert.That(eintrag.Bankleitzahl, Is.EqualTo(66091200));
             Assert.That(eintrag.Merkmal, Is.EqualTo(2));
             Assert.That(eintrag.Bezeichnung, Is.EqualTo("Volksbank Ettlingen Zw Karlsbad"));
@@ -55,12 +59,10 @@ namespace Bankleitzahlen.Bundesbank.Tests
             Assert.That(eintrag.Ort, Is.EqualTo("Karlsbad"));
             Assert.That(eintrag.Kurzbezeichnung, Is.EqualTo("Volksbank Ettlingen"));
             Assert.That(eintrag.PAN, Is.EqualTo(96078));
-            Assert.That(eintrag.BIC, Is.Null);
-            Assert.That(eintrag.Prüfzifferberechnungsmethode, Is.EqualTo(6));
+            Assert.That(eintrag.Prüfzifferberechnungsmethode, Is.EqualTo("06"));
             Assert.That(eintrag.Datensatznummer, Is.EqualTo(22797));
             Assert.That(eintrag.Änderungskennzeichen, Is.EqualTo("U"));
             Assert.That(eintrag.Bankleitzahlenlöschung, Is.False);
-            Assert.That(eintrag.Nachfolgebankleitzahl, Is.Null);
         }
 
         [Test]
