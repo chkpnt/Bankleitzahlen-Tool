@@ -63,6 +63,10 @@
       <Project>{71e9d6f1-0342-4d5c-8945-af33216b40d1}</Project>
       <Name>Bankleitzahlen.GL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Bankleitzahlen.Models\Bankleitzahlen.Models.csproj">
+      <Project>{E20F2568-F061-4000-9794-BF6757CF2426}</Project>
+      <Name>Bankleitzahlen.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

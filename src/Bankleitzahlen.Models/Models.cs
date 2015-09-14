@@ -28,4 +28,14 @@ namespace Bankleitzahlen.Models
         public static explicit operator int(BLZ blz) => blz._value;
     }
 
+    public class Bankleitzahlenänderungsdatei
+    {
+        public string Dateiname { get; set; }
+        public Uri Uri { get; set; }
+    }
+
+    public class Bankleitzahlenänderungsdateien
+    {
+        public IEnumerable<Bankleitzahlenänderungsdatei> Uris { get; set; }
+    }
 }

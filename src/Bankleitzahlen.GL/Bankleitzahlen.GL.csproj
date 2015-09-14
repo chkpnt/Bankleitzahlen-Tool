@@ -51,6 +51,10 @@
       <Project>{8bd3f572-86f8-48a2-9d12-47af342b4110}</Project>
       <Name>Bankleitzahlen.Bundesbank</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bankleitzahlen.Models\Bankleitzahlen.Models.csproj">
+      <Project>{E20F2568-F061-4000-9794-BF6757CF2426}</Project>
+      <Name>Bankleitzahlen.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
