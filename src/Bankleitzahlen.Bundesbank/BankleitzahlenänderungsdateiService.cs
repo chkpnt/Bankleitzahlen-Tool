@@ -1,7 +1,9 @@
 ﻿using Bankleitzahlen.Commons;
+using FileHelpers;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -17,7 +19,7 @@ namespace Bankleitzahlen.Bundesbank
 
     public class BankleitzahlenänderungsdateiService : IBankleitzahlenänderungsdateiService
     {
-        private static readonly Uri BankleitzahlenänderungsdateiUri = new Uri("https://www.bundesbank.de/Redaktion/DE/Standardartikel/Aufgaben/Unbarer_Zahlungsverkehr/bankleitzahlen_download.html");
+        public static readonly Uri BankleitzahlenänderungsdateiUri = new Uri("https://www.bundesbank.de/Redaktion/DE/Standardartikel/Aufgaben/Unbarer_Zahlungsverkehr/bankleitzahlen_download.html");
 
         private static readonly Uri BankleitzahlenänderungsdateiUri_Base = new Uri("https://www.bundesbank.de");
 
@@ -26,6 +28,8 @@ namespace Bankleitzahlen.Bundesbank
         private static readonly string UriSuffix = "?__blob=publicationFile";
 
         public IWebClientFactory WebClientFactory { private get; set; } = new WebClientFactory();
+
+        public IFileHelperEngine<BankleitzahlenänderungsdateiEintrag> FileHelperFürBankleitzahlenänderungsdatei { private get; set; } = new FileHelperEngine<BankleitzahlenänderungsdateiEintrag>();
 
         public async Task<Bankleitzahlenänderungsdateien> LadeUris()
         {
@@ -54,13 +58,40 @@ namespace Bankleitzahlen.Bundesbank
                                   select link.Attributes["href"].Value
                             )
                           where href.StartsWith(UriPrefix) && href.EndsWith(UriSuffix)
-                          select new Bankleitzahlenänderungsdatei()
+                          select new Bankleitzahlenänderungsdatei
                           {
                               Dateiname = Path.GetFileName(href.Replace(UriSuffix, "")),
                               Uri = new Uri(BankleitzahlenänderungsdateiUri_Base, href)
                           };
 
             return dateien;
+        }
+
+        public async Task<List<Bank>> LadeBankenAusÄnderungsdatei(Bankleitzahlenänderungsdatei änderungsdatei)
+        {
+            using (var webclient = WebClientFactory.CreateWebClient())
+            {
+                var stream = await webclient.OpenReadTaskAsync(änderungsdatei.Uri);
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var einträge =  FileHelperFürBankleitzahlenänderungsdatei.ReadStream(reader);
+
+                    var result = from eintrag in einträge
+                                 select new Bank
+                                 {
+                                     Name = eintrag.Bezeichnung,
+                                     Bankleitzahl = eintrag.Bankleitzahl,
+                                     Adresse = new CivicAddress
+                                     {
+                                         City = eintrag.Ort,
+                                         PostalCode = eintrag.Postleitzahl.ToString()
+                                     }
+                                 };
+
+                    return result.ToList();
+                }
+            }
         }
     }
 }
