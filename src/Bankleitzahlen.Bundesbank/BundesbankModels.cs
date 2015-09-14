@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 
 namespace Bankleitzahlen.Bundesbank
 {
-    public class BundesbankModels
+    public class Bankleitzahlenänderungsdatei
     {
+        public string Dateiname { get; set; }
+        public Uri Uri { get; set; }
+    }
+
+    public class Bankleitzahlenänderungsdateien
+    {
+        public IEnumerable<Bankleitzahlenänderungsdatei> Uris { get; set; }
     }
 
     [FixedLengthRecord()]
-    public class BundesbankBankleitzahlenÄnderungsdateieintrag
+    public class BankleitzahlenänderungsdateiEintrag
     {
         [FieldFixedLength(8)]
         public int Bankleitzahl;

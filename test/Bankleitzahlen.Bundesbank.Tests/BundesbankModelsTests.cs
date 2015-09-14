@@ -13,12 +13,12 @@ namespace Bankleitzahlen.Bundesbank.Tests
     [TestFixture]
     public class BundesbankModelsTests
     {
-        private FileHelperEngine<BundesbankBankleitzahlenÄnderungsdateieintrag> _engine;
+        private FileHelperEngine<BankleitzahlenänderungsdateiEintrag> _engine;
 
         [SetUp]
         public void SetUp()
         {
-            _engine = new FileHelperEngine<BundesbankBankleitzahlenÄnderungsdateieintrag>();
+            _engine = new FileHelperEngine<BankleitzahlenänderungsdateiEintrag>();
         }
         
         [Test]
