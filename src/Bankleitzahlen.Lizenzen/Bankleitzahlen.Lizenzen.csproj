@@ -54,6 +54,8 @@
     <EmbeddedResource Include="Projekte\NuGet.YamlDotNet.yaml" />
     <EmbeddedResource Include="Projekte\NuGet.Caliburn.Micro.yaml" />
     <EmbeddedResource Include="Projekte\NuGet.FileHelpers.yaml" />
+    <EmbeddedResource Include="Projekte\NuGet.HtmlAgilityPack.yaml" />
+    <EmbeddedResource Include="Projekte\NuGet.Moq.yaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
