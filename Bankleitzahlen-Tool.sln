@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Models", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Models.Tests", "test\Bankleitzahlen.Models.Tests\Bankleitzahlen.Models.Tests.csproj", "{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.GL", "src\Bankleitzahlen.GL\Bankleitzahlen.GL.csproj", "{71E9D6F1-0342-4D5C-8945-AF33216B40D1}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Bundesbank", "src\Bankleitzahlen.Bundesbank\Bankleitzahlen.Bundesbank.csproj", "{8BD3F572-86F8-48A2-9D12-47AF342B4110}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Lizenzen.Tests", "test\Bankleitzahlen.Lizenzen.Tests\Bankleitzahlen.Lizenzen.Tests.csproj", "{2E3B53D9-AF29-434D-8F2F-4A7C3E0B3C6A}"
@@ -18,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Lizenzen", "src\Bankleitzahlen.Lizenzen\Bankleitzahlen.Lizenzen.csproj", "{DCFBC030-1821-40A4-A81A-164DD128CCB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.Bundesbank.Tests", "test\Bankleitzahlen.Bundesbank.Tests\Bankleitzahlen.Bundesbank.Tests.csproj", "{BD6EAAC3-1B0F-4C0D-8FFB-BE3C36FBAAE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankleitzahlen.GL.Tests", "test\Bankleitzahlen.GL.Tests\Bankleitzahlen.GL.Tests.csproj", "{02CB3964-E57C-421B-9DC0-364FD3F6646C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,10 @@ Global
 		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E9D6F1-0342-4D5C-8945-AF33216B40D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E9D6F1-0342-4D5C-8945-AF33216B40D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E9D6F1-0342-4D5C-8945-AF33216B40D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E9D6F1-0342-4D5C-8945-AF33216B40D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BD3F572-86F8-48A2-9D12-47AF342B4110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BD3F572-86F8-48A2-9D12-47AF342B4110}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BD3F572-86F8-48A2-9D12-47AF342B4110}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +57,10 @@ Global
 		{BD6EAAC3-1B0F-4C0D-8FFB-BE3C36FBAAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD6EAAC3-1B0F-4C0D-8FFB-BE3C36FBAAE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD6EAAC3-1B0F-4C0D-8FFB-BE3C36FBAAE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02CB3964-E57C-421B-9DC0-364FD3F6646C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02CB3964-E57C-421B-9DC0-364FD3F6646C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02CB3964-E57C-421B-9DC0-364FD3F6646C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02CB3964-E57C-421B-9DC0-364FD3F6646C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,9 +68,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E20F2568-F061-4000-9794-BF6757CF2426} = {2228595A-D448-4841-AFE9-449B4EB33715}
 		{03030236-A66A-4BB9-9F3D-BA2CFED4D8A9} = {34CA6D79-E9F1-4F71-855C-B3DE8245E249}
+		{71E9D6F1-0342-4D5C-8945-AF33216B40D1} = {2228595A-D448-4841-AFE9-449B4EB33715}
 		{8BD3F572-86F8-48A2-9D12-47AF342B4110} = {2228595A-D448-4841-AFE9-449B4EB33715}
 		{2E3B53D9-AF29-434D-8F2F-4A7C3E0B3C6A} = {34CA6D79-E9F1-4F71-855C-B3DE8245E249}
 		{DCFBC030-1821-40A4-A81A-164DD128CCB2} = {2228595A-D448-4841-AFE9-449B4EB33715}
 		{BD6EAAC3-1B0F-4C0D-8FFB-BE3C36FBAAE6} = {34CA6D79-E9F1-4F71-855C-B3DE8245E249}
+		{02CB3964-E57C-421B-9DC0-364FD3F6646C} = {34CA6D79-E9F1-4F71-855C-B3DE8245E249}
 	EndGlobalSection
 EndGlobal
