@@ -1,5 +1,5 @@
 ﻿using Bankleitzahlen.Bundesbank;
-using Bankleitzahlen.Models;
+using Bankleitzahlen.Commons;
 using Moq;
 using NUnit.Framework;
 using System;

@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bankleitzahlen.Models\Bankleitzahlen.Models.csproj">
+    <ProjectReference Include="..\..\src\Bankleitzahlen.Commons\Bankleitzahlen.Commons.csproj">
       <Project>{e20f2568-f061-4000-9794-bf6757cf2426}</Project>
-      <Name>Bankleitzahlen.Models</Name>
+      <Name>Bankleitzahlen.Commons</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

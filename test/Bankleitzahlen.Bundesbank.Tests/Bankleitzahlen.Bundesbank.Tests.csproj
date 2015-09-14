@@ -61,9 +61,9 @@
       <Project>{8bd3f572-86f8-48a2-9d12-47af342b4110}</Project>
       <Name>Bankleitzahlen.Bundesbank</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bankleitzahlen.Models\Bankleitzahlen.Models.csproj">
-      <Project>{e20f2568-f061-4000-9794-bf6757cf2426}</Project>
-      <Name>Bankleitzahlen.Models</Name>
+    <ProjectReference Include="..\..\src\Bankleitzahlen.Commons\Bankleitzahlen.Commons.csproj">
+      <Project>{E20F2568-F061-4000-9794-BF6757CF2426}</Project>
+      <Name>Bankleitzahlen.Commons</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

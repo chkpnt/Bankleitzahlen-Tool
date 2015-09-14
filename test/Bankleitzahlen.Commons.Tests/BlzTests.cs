@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bankleitzahlen.Models.Tests
+namespace Bankleitzahlen.Commons.Tests
 {
     [TestFixture]
     public class BlzTests
