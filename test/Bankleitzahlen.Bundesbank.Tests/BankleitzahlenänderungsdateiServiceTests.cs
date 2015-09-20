@@ -38,13 +38,13 @@ namespace Bankleitzahlen.Bundesbank.Tests
         public async void Bundesbank_BankleitzahlenänderungsdateiService_LadeUris()
         {
             var uris = await _service.LadeUris();
-            Assert.That(uris.Uris.Count(), Is.EqualTo(2));
+            Assert.That(uris.Dateien.Count(), Is.EqualTo(2));
 
-            Assert.That(uris.Uris.First().Dateiname, Is.EqualTo("blz_2015_06_08_txt.txt"));
-            Assert.That(uris.Uris.First().Uri, Is.EqualTo(new Uri("https://www.bundesbank.de/Redaktion/DE/Downloads/Aufgaben/Unbarer_Zahlungsverkehr/Bankleitzahlen/2015_09_06/blz_2015_06_08_txt.txt?__blob=publicationFile")));
+            Assert.That(uris.Dateien.First().Dateiname, Is.EqualTo("blz_2015_06_08_txt.txt"));
+            Assert.That(uris.Dateien.First().Uri, Is.EqualTo(new Uri("https://www.bundesbank.de/Redaktion/DE/Downloads/Aufgaben/Unbarer_Zahlungsverkehr/Bankleitzahlen/2015_09_06/blz_2015_06_08_txt.txt?__blob=publicationFile")));
 
-            Assert.That(uris.Uris.Last().Dateiname, Is.EqualTo("blz_2015_09_07_txt.txt"));
-            Assert.That(uris.Uris.Last().Uri, Is.EqualTo(new Uri("https://www.bundesbank.de/Redaktion/DE/Downloads/Aufgaben/Unbarer_Zahlungsverkehr/Bankleitzahlen/2015_12_06/blz_2015_09_07_txt.txt?__blob=publicationFile")));
+            Assert.That(uris.Dateien.Last().Dateiname, Is.EqualTo("blz_2015_09_07_txt.txt"));
+            Assert.That(uris.Dateien.Last().Uri, Is.EqualTo(new Uri("https://www.bundesbank.de/Redaktion/DE/Downloads/Aufgaben/Unbarer_Zahlungsverkehr/Bankleitzahlen/2015_12_06/blz_2015_09_07_txt.txt?__blob=publicationFile")));
         }
 
         [Test]

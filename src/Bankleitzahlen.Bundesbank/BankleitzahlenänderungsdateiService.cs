@@ -44,7 +44,7 @@ namespace Bankleitzahlen.Bundesbank
 
                 return new Bankleitzahlenänderungsdateien()
                 {
-                    Uris = from datei in dateien
+                    Dateien = from datei in dateien
                            where datei.Dateiname.EndsWith(".txt")
                            select datei
                 };

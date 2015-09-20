@@ -21,9 +21,9 @@ namespace Bankleitzahlen.GL.Tests
 
             var bankleitzahländerungsdateien = await service.GetBankleitzahlenänderungsdateien();
 
-            Assert.That(bankleitzahländerungsdateien.Uris.Count(), Is.EqualTo(1));
-            Assert.That(bankleitzahländerungsdateien.Uris.First().Dateiname, Is.EqualTo("a"));
-            Assert.That(bankleitzahländerungsdateien.Uris.First().Uri, Is.EqualTo(new Uri("http://beispiel/a")));
+            Assert.That(bankleitzahländerungsdateien.Dateien.Count(), Is.EqualTo(1));
+            Assert.That(bankleitzahländerungsdateien.Dateien.First().Dateiname, Is.EqualTo("a"));
+            Assert.That(bankleitzahländerungsdateien.Dateien.First().Uri, Is.EqualTo(new Uri("http://beispiel/a")));
         }
 
         private Mock<IBankleitzahlenänderungsdateiService> GetServiceMock()
@@ -32,7 +32,7 @@ namespace Bankleitzahlen.GL.Tests
 
             var returnValue = new Bankleitzahlenänderungsdateien()
             {
-                Uris = new List<Bankleitzahlenänderungsdatei>()
+                Dateien = new List<Bankleitzahlenänderungsdatei>()
                 {
                     new Bankleitzahlenänderungsdatei
                     {

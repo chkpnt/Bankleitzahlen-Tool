@@ -36,6 +36,6 @@ namespace Bankleitzahlen.Commons
 
     public class Bankleitzahlenänderungsdateien
     {
-        public IEnumerable<Bankleitzahlenänderungsdatei> Uris { get; set; }
+        public IEnumerable<Bankleitzahlenänderungsdatei> Dateien { get; set; }
     }
 }

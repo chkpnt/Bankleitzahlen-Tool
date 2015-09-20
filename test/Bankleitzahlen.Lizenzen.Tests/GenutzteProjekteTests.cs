@@ -30,12 +30,12 @@ namespace Bankleitzahlen.Lizenzen.Tests
         public void GenutzteProjekte_AusgabeDerLizenzinformationen()
         {
             var ausgabe = from projekt in _projekte.Projekte
-                          select string.Format(@"Projekt: {0}
+                          select string.Format(@"Projektname: {0}
 Autor: {1}
 Homepage: {2}
 Lizenz:
 {3}
-", projekt.Projekt, projekt.Autor, projekt.Homepage, projekt.LizenzText);
+", projekt.Projektname, projekt.Autor, projekt.Homepage, projekt.LizenzText);
 
             Console.WriteLine(string.Join(Environment.NewLine, ausgabe.ToArray()));
         }

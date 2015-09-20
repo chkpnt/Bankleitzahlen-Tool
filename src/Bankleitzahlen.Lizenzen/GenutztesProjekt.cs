@@ -8,7 +8,7 @@ namespace Bankleitzahlen.Lizenzen
 {
     public class GenutztesProjekt
     {
-        public string Projekt { get; set; }
+        public string Projektname { get; set; }
         public string Autor { get; set; }
         public Uri Homepage { get; set; }
         public string LizenzAbk { get; set; }
