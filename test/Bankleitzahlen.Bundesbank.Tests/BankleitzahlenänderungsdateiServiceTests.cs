@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Reflection;
 using Bankleitzahlen.Commons;
+using System.IO.Abstractions.TestingHelpers;
 
 namespace Bankleitzahlen.Bundesbank.Tests
 {
@@ -25,13 +26,22 @@ namespace Bankleitzahlen.Bundesbank.Tests
             var webclientMock = new Mock<IWebClient>();
             webclientMock.Setup(client => client.OpenReadTaskAsync(It.Is<Uri>(uri => uri == BankleitzahlenänderungsdateiService.BankleitzahlenänderungsdateiUri))).ReturnsAsync(stream_website);
             webclientMock.Setup(client => client.OpenReadTaskAsync(It.Is<Uri>(uri => uri == new Uri("https://foo.bla/blz_2015_09_07_txt.txt")))).ReturnsAsync(stream_änderungsdatei);
-            
+
             var webclientFactoryMock = new Mock<IWebClientFactory>();
             webclientFactoryMock.Setup(factory => factory.CreateWebClient()).Returns(webclientMock.Object);
 
+            var fileSystemMock = new MockFileSystem(new Dictionary<string, MockFileData>
+                {
+                    { @"c:\data\Bundesbankänderungsdateien\blz_2015_09_07_txt.txt", new MockFileData(
+@"100305001Bankhaus Löbbecke                                         10117Berlin                             Bankhaus Löbbecke Berlin   26225LOEBDEBBXXX09043961U000000000
+100306001North Channel Bank                                        55118Mainz a Rhein                      North Channel Bank Mainz   26205GENODEF1OGK88000532U000000000
+100307001Eurocity Bank                                             60311Frankfurt am Main                  Eurocity Bank              26535DLGHDEB1XXX16044339U000000000") }
+                });
+
+            //_service = new BankleitzahlenänderungsdateiService(fileSystemMock);
             _service = new BankleitzahlenänderungsdateiService();
             _service.WebClientFactory = webclientFactoryMock.Object;
-
+            _service.FileSystem = fileSystemMock;
         }
 
         [Test]
@@ -48,7 +58,7 @@ namespace Bankleitzahlen.Bundesbank.Tests
         }
 
         [Test]
-        public async void Bundesbank_BankleitzahlenänderungsdateiService_LadeBankenAusÄnderungsdatei()
+        public async void Bundesbank_BankleitzahlenänderungsdateiService_LadeBankenAusDateiÜbersGemockteWeb()
         {
             var änderungsdatei = new Bankleitzahlenänderungsdatei
             {
@@ -64,6 +74,25 @@ namespace Bankleitzahlen.Bundesbank.Tests
             Assert.That(bundesbank.Name, Is.EqualTo("Bundesbank"));
             Assert.That(bundesbank.Adresse.City, Is.EqualTo("Berlin"));
             Assert.That(bundesbank.Adresse.PostalCode, Is.EqualTo("10591"));
+        }
+
+        [Test]
+        public async void Bundesbank_BankleitzahlenänderungsdateiService_LadeBankenAusLokalerDatei()
+        {
+            var änderungsdatei = new Bankleitzahlenänderungsdatei
+            {
+                Uri = new Uri(@"c:\data\Bundesbankänderungsdateien\blz_2015_09_07_txt.txt")
+            };
+
+            var banken = await _service.LadeBankenAusÄnderungsdatei(änderungsdatei);
+
+            Assert.That(banken.Count(), Is.EqualTo(3));
+
+            var bank = banken.First();
+            Assert.That((int)bank.Bankleitzahl, Is.EqualTo(10030500));
+            Assert.That(bank.Name, Is.EqualTo("Bankhaus Löbbecke"));
+            Assert.That(bank.Adresse.City, Is.EqualTo("Berlin"));
+            Assert.That(bank.Adresse.PostalCode, Is.EqualTo("10117"));
         }
     }
 }

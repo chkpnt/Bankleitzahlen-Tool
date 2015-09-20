@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -31,6 +32,8 @@ namespace Bankleitzahlen.Bundesbank
 
         public IFileHelperEngine<BankleitzahlenänderungsdateiEintrag> FileHelperFürBankleitzahlenänderungsdatei { private get; set; } = new FileHelperEngine<BankleitzahlenänderungsdateiEintrag>();
 
+        public IFileSystem FileSystem { private get; set; } = new FileSystem();
+
         public async Task<Bankleitzahlenänderungsdateien> LadeUris()
         {
             using (var webclient = WebClientFactory.CreateWebClient())
@@ -45,8 +48,8 @@ namespace Bankleitzahlen.Bundesbank
                 return new Bankleitzahlenänderungsdateien()
                 {
                     Dateien = from datei in dateien
-                           where datei.Dateiname.EndsWith(".txt")
-                           select datei
+                              where datei.Dateiname.EndsWith(".txt")
+                              select datei
                 };
             }
         }
@@ -69,28 +72,55 @@ namespace Bankleitzahlen.Bundesbank
 
         public async Task<List<Bank>> LadeBankenAusÄnderungsdatei(Bankleitzahlenänderungsdatei änderungsdatei)
         {
+            switch (änderungsdatei.Uri.Scheme)
+            {
+                case "file":
+                    return await LadeBankenAusÄnderungsdatei_Lokal(änderungsdatei);
+                case "http":
+                case "https":
+                    return await LadeBankenAusÄnderungsdatei_Web(änderungsdatei);
+                default:
+                    throw new ArgumentException("URI passt nicht.");
+            }
+        }
+
+        private Task<List<Bank>> LadeBankenAusÄnderungsdatei_Lokal(Bankleitzahlenänderungsdatei änderungsdatei)
+        {
+            var pfad = änderungsdatei.Uri.LocalPath;
+            var stream = FileSystem.File.OpenRead(pfad);
+            var banken = LadeBankenAusStream(stream);
+            return Task.FromResult(banken);
+        }
+
+        private async Task<List<Bank>> LadeBankenAusÄnderungsdatei_Web(Bankleitzahlenänderungsdatei änderungsdatei)
+        {
             using (var webclient = WebClientFactory.CreateWebClient())
             {
                 var stream = await webclient.OpenReadTaskAsync(änderungsdatei.Uri);
 
-                using (var reader = new StreamReader(stream))
-                {
-                    var einträge =  FileHelperFürBankleitzahlenänderungsdatei.ReadStream(reader);
+                return LadeBankenAusStream(stream);
+            }
+        }
 
-                    var result = from eintrag in einträge
-                                 select new Bank
+        private List<Bank> LadeBankenAusStream(Stream stream)
+        {
+            using (var reader = new StreamReader(stream))
+            {
+                var einträge = FileHelperFürBankleitzahlenänderungsdatei.ReadStream(reader);
+
+                var result = from eintrag in einträge
+                             select new Bank
+                             {
+                                 Name = eintrag.Bezeichnung,
+                                 Bankleitzahl = eintrag.Bankleitzahl,
+                                 Adresse = new CivicAddress
                                  {
-                                     Name = eintrag.Bezeichnung,
-                                     Bankleitzahl = eintrag.Bankleitzahl,
-                                     Adresse = new CivicAddress
-                                     {
-                                         City = eintrag.Ort,
-                                         PostalCode = eintrag.Postleitzahl.ToString()
-                                     }
-                                 };
+                                     City = eintrag.Ort,
+                                     PostalCode = eintrag.Postleitzahl.ToString()
+                                 }
+                             };
 
-                    return result.ToList();
-                }
+                return result.ToList();
             }
         }
     }
