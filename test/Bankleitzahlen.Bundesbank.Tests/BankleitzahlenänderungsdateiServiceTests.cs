@@ -35,7 +35,7 @@ namespace Bankleitzahlen.Bundesbank.Tests
                     { @"c:\data\Bundesbankänderungsdateien\blz_2015_09_07_txt.txt", new MockFileData(
 @"100305001Bankhaus Löbbecke                                         10117Berlin                             Bankhaus Löbbecke Berlin   26225LOEBDEBBXXX09043961U000000000
 100306001North Channel Bank                                        55118Mainz a Rhein                      North Channel Bank Mainz   26205GENODEF1OGK88000532U000000000
-100307001Eurocity Bank                                             60311Frankfurt am Main                  Eurocity Bank              26535DLGHDEB1XXX16044339U000000000") }
+100307001Eurocity Bank                                             60311Frankfurt am Main                  Eurocity Bank              26535DLGHDEB1XXX16044339U000000000", Encoding.GetEncoding(1252)) }
                 });
 
             //_service = new BankleitzahlenänderungsdateiService(fileSystemMock);
@@ -74,6 +74,12 @@ namespace Bankleitzahlen.Bundesbank.Tests
             Assert.That(bundesbank.Name, Is.EqualTo("Bundesbank"));
             Assert.That(bundesbank.Adresse.City, Is.EqualTo("Berlin"));
             Assert.That(bundesbank.Adresse.PostalCode, Is.EqualTo("10591"));
+
+            var bankMitUmlaut = banken.ElementAt(17);
+            Assert.That((int)bankMitUmlaut.Bankleitzahl, Is.EqualTo(10030500));
+            Assert.That(bankMitUmlaut.Name, Is.EqualTo("Bankhaus Löbbecke"));
+            Assert.That(bankMitUmlaut.Adresse.City, Is.EqualTo("Berlin"));
+            Assert.That(bankMitUmlaut.Adresse.PostalCode, Is.EqualTo("10117"));
         }
 
         [Test]

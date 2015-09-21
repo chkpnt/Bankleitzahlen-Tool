@@ -16,6 +16,8 @@ namespace Bankleitzahlen.Bundesbank
     public interface IBankleitzahlenänderungsdateiService
     {
         Task<Bankleitzahlenänderungsdateien> LadeUris();
+
+        Task<List<Bank>> LadeBankenAusÄnderungsdatei(Bankleitzahlenänderungsdatei änderungsdatei);
     }
 
     public class BankleitzahlenänderungsdateiService : IBankleitzahlenänderungsdateiService
@@ -104,7 +106,7 @@ namespace Bankleitzahlen.Bundesbank
 
         private List<Bank> LadeBankenAusStream(Stream stream)
         {
-            using (var reader = new StreamReader(stream))
+            using (var reader = new StreamReader(stream, Encoding.GetEncoding(1252)))
             {
                 var einträge = FileHelperFürBankleitzahlenänderungsdatei.ReadStream(reader);
 
