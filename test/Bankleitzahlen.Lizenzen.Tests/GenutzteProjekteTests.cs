@@ -23,7 +23,7 @@ namespace Bankleitzahlen.Lizenzen.Tests
         public void GenutzteProjekte_AnzahlDerFremdprojekte()
         {
             var anzahl = _projekte.Projekte.Count();
-            Assert.That(anzahl, Is.EqualTo(6));
+            Assert.That(anzahl, Is.EqualTo(7));
         }
 
         [Test, Explicit]
