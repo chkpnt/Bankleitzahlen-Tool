@@ -57,6 +57,7 @@
     <EmbeddedResource Include="Projekte\NuGet.HtmlAgilityPack.yaml" />
     <EmbeddedResource Include="Projekte\NuGet.Moq.yaml" />
     <EmbeddedResource Include="Projekte\NuGet.System.IO.Abstractions.yaml" />
+    <EmbeddedResource Include="Projekte\Codeschnipsel.INotifyPropertyChanged.yaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
