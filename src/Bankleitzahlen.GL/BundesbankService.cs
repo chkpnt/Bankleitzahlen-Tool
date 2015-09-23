@@ -14,5 +14,7 @@ namespace Bankleitzahlen.GL
         public IBankleitzahlenänderungsdateiService BankleitzahlenänderungsdateiService { private get; set; } = new BankleitzahlenänderungsdateiService();
 
         public async Task<Bankleitzahlenänderungsdateien> GetBankleitzahlenänderungsdateien() => await BankleitzahlenänderungsdateiService.LadeUris();
+
+        public async Task<List<Bank>> GetBanken(Bankleitzahlenänderungsdatei änderungsdatei) => await BankleitzahlenänderungsdateiService.LadeBankenAusÄnderungsdatei(änderungsdatei);
     }
 }
