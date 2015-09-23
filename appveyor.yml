@@ -1,0 +1,42 @@
+-
+  environment:
+    coveralls_token:
+      secure: w6bytvaavs9zjjVF7qp0vXuCRwu9fVbrRmASaZC0uK9Ytj4cvDmZ0iH3OVMMNSYw
+    coverity_token:
+      secure: 1GhFcTVAqK3hVN1qJNRpAqRhIfwy1rZLqcHTNTJ0AU4=
+    coverity_email:
+      secure: KGjFoFTNOGBGQgS2D4f+m5bdUq5LJDoE38plBnK5EjY=
+    coverity_trigger_branch: coverity-scan
+
+  # Achtung: Coverity 7.6 funktioniert mit VS2015RC
+  # Coverity 7.7 aber nicht mit VS2015
+  os: Visual Studio 2015 RC
+
+  init:
+  - git config --global core.autocrlf true
+
+  install:
+  - choco install -y psake
+
+  before_build:
+  - ps: psake .\build.tasks.ps1 RestoreNuGetPackages
+
+  build_script:
+  - ps: |
+      if ($env:APPVEYOR_REPO_BRANCH -eq $env:coverity_trigger_branch) {
+        # cov-build mit psake-Aufruf klappt derzeit nicht
+        cov-build --dir cov-int "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" "Bankleitzahlen-Tool.sln" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+      } else {
+        psake .\build.tasks.ps1 Build
+      }
+
+  test_script:
+  - ps: psake .\build.tasks.ps1 AppVeyor-TestAndPublishCodeCoverage
+  
+  deploy_script:
+  - ps: |
+      if ($env:APPVEYOR_REPO_BRANCH -eq $env:coverity_trigger_branch) {
+        nuget install -ExcludeVersion PublishCoverity
+        PublishCoverity\tools\PublishCoverity.exe compress -o coverity.zip -i cov-int
+        PublishCoverity\tools\PublishCoverity.exe publish -t %coverity_token% -e %coverity_email% -r chkpnt/Gesetzesentwicklung-Tool -z coverity.zip --codeVersion %APPVEYOR_BUILD_VERSION%
+      }
