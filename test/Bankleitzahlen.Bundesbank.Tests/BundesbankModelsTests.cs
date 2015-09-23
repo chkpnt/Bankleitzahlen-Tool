@@ -22,7 +22,7 @@ namespace Bankleitzahlen.Bundesbank.Tests
         }
         
         [Test]
-        public void Bundesbank_Models_KompletteZeile()
+        public void Bundesbank_Models_Parse_KompletteZeile()
         {
             var zeile = "750690761Raiffeisenbank Kallmünz -alt-                             93183Kallmünz                           Raiffbk Kallmünz -alt-     67232GENODEF1KLM88027595U175069061";
 
@@ -44,7 +44,7 @@ namespace Bankleitzahlen.Bundesbank.Tests
         }
 
         [Test]
-        public void Bundesbank_Models_ZeileOhneBICundNachfolgebankleitzahl()
+        public void Bundesbank_Models_Parse_ZeileOhneBICundNachfolgebankleitzahl()
         {
             var zeile = "660912002Volksbank Ettlingen Zw Karlsbad                           76307Karlsbad                           Volksbank Ettlingen        96078           06022797U000000000";
 
@@ -68,7 +68,7 @@ namespace Bankleitzahlen.Bundesbank.Tests
         }
 
         [Test]
-        public void Bundesbank_Models_ZeileOhnePAN()
+        public void Bundesbank_Models_Parse_ZeileOhnePAN()
         {
             var zeile = "100196101Dexia Kommunalbank Deutschland                            10969Berlin                             Dexia Berlin                    DXIADEBBXXX09055273U000000000";
 
@@ -78,7 +78,7 @@ namespace Bankleitzahlen.Bundesbank.Tests
         }
 
         [Test]
-        public void Bundesbank_Models_KompletteDatei()
+        public void Bundesbank_Models_Parse_KompletteDatei()
         {
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Bankleitzahlen.Bundesbank.Tests.Resources.blz_2015_09_07_txt.txt"))
             using (var reader = new StreamReader(stream))
