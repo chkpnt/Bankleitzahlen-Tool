@@ -1,0 +1,14 @@
+﻿<Window x:Class="Bankleitzahlen.GUI.PureWPF.LizenzWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bankleitzahlen.GUI.PureWPF"
+        mc:Ignorable="d"
+        Title="{Binding Projektname}" Height="300" Width="300">
+    <Grid>
+        <ScrollViewer>
+            <TextBox Text="{Binding LizenzText}" TextWrapping="Wrap" IsReadOnly="True" BorderBrush="{x:Null}" BorderThickness="0" />
+        </ScrollViewer>
+    </Grid>
+</Window>
