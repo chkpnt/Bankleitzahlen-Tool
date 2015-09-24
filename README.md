@@ -46,7 +46,7 @@ Caliburn.Micro bietet noch andere, hier bisher nicht eingesetzte Features:
 [bundesbank_link]: https://www.bundesbank.de/Redaktion/DE/Standardartikel/Aufgaben/Unbarer_Zahlungsverkehr/bankleitzahlen_download.html
 [caliburn_link]: http://caliburnmicro.com/
 [screenshot]: https://raw.githubusercontent.com/chkpnt/Bankleitzahlen-Tool/master/screenshot.png
-[appveyor_build_badge]: https://ci.appveyor.com/api/projects/status/m3raii5wqpxas6v3?svg=true 
+[appveyor_build_badge]: https://ci.appveyor.com/api/projects/status/i7phbw50uln995mc?svg=true
 [appveyor_build_link]: https://ci.appveyor.com/project/chkpnt/bankleitzahlen-tool
 [appveyor_tests_badge]: http://teststatusbadge.azurewebsites.net/api/status/chkpnt/bankleitzahlen-tool
 [appveyor_tests_link]: https://ci.appveyor.com/project/chkpnt/bankleitzahlen-tool/build/tests
