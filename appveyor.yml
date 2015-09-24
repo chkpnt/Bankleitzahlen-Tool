@@ -8,8 +8,7 @@
       secure: KGjFoFTNOGBGQgS2D4f+m5bdUq5LJDoE38plBnK5EjY=
     coverity_trigger_branch: coverity-scan
 
-  # Achtung: Coverity 7.6 funktioniert mit VS2015RC
-  # Coverity 7.7 aber nicht mit VS2015
+  # Achtung: Coverity 7.7 funktioniert mit VS2015 / C# 6
   os: Visual Studio 2015
 
   init:

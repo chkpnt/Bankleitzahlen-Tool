@@ -1,8 +1,9 @@
 ## Build status
 [![Build status][appveyor_build_badge]][appveyor_build_link]
 [![Test status][appveyor_tests_badge]][appveyor_tests_link]
-[![Coverity Scan Build Status][coverity_badge]][coverity_link]
 [![Coverage Status][coveralls_badge]][coveralls_link]
+
+[![Coverity Scan Build Status][coverity_badge]][coverity_link] *Coverity funktioniert noch nicht mit VS2015 / C# 6*
 
 # Bankleitzahlen-Tool
 
