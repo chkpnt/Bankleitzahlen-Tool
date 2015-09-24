@@ -22,7 +22,7 @@
   - ps: psake .\build.tasks.ps1 RestoreNuGetPackages
 
   build_script:
-  - if "%APPVEYOR_REPO_BRANCH"=="%coverity_trigger_branch%" ( cov-build --dir cov-int "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" "Bankleitzahlen-Tool.sln" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" ) else ( psake .\build.tasks.ps1 Build' )
+  - if "%APPVEYOR_REPO_BRANCH"=="%coverity_trigger_branch%" ( cov-build --dir cov-int "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" "Bankleitzahlen-Tool.sln" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" ) else ( psake .\build.tasks.ps1 Build )
 
   test_script:
   - ps: psake .\build.tasks.ps1 AppVeyor-TestAndPublishCodeCoverage
