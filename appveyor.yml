@@ -10,7 +10,7 @@
 
   # Achtung: Coverity 7.6 funktioniert mit VS2015RC
   # Coverity 7.7 aber nicht mit VS2015
-  os: Visual Studio 2015 RC
+  os: Visual Studio 2015
 
   init:
   - git config --global core.autocrlf true
