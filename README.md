@@ -7,10 +7,45 @@
 
 # Bankleitzahlen-Tool
 
-## Über dieses Projekt 
+## Ziel dieses Projekts
 
-bla bla bla
+Das Bankleitzahlen-Tool hilft beim Download und Durchsuchen der auf der Webseite
+der [Bundesbank][bundesbank_link] hinterlegten *Bankleitzahlenänderungsdateien*:
 
+![Screenshot][screenshot]
+
+## Hä?
+
+Okay, kleiner Scherz ;-). Das Projekt dient originär der Demonstration des WPF-Frameworks
+[Caliburn.Micro][caliburn_link]. Hierzu wurde eine GUI entworfen und sowohl mit Caliburn.Micro
+als auch in "Pure-WPF" umgesetzt.
+
+Die "Pure-WPF"-Implementierung zeigt:
+* Databindung und Actions über XAML
+* Databindung und Actions über Code-behind
+* rund 18k `UserControls` in der mit einer `ListBox` verbundenen `Collection` (ohne Virtualisierung): flutscht nicht
+* Viele Smells ...
+
+Die Caliburn.Micro-Implementierung demonstriert:
+* MVVM-Pattern
+* Konventionen für die automatische Zuordnung von ViewModel und View
+* Konventionen fürs Databindung
+* Konventionen für Actions und der Verwendung von `cal:Message.Attach`
+* Konventionen für Eigenschaften wie IsEnabled und SelectedItem
+* Nützliche Basisklassen wie `PropertyChangedBase` und `ViewAware`
+* rund 18k ViewModels in der mit einer `ListBox` verbundenen `Collection`: flutscht dennoch
+* sehr einfacher Einstieg
+
+Caliburn.Micro bietet noch andere, hier bisher nicht eingesetzte Features:
+* Erweiterung um eigene Konventionen
+* Einfacher IoC-Container
+* Event-Bus
+* Abstraktion für die verschiedenen Plattformen: .NET, Silverlight und WinRT
+
+
+[bundesbank_link]: https://www.bundesbank.de/Redaktion/DE/Standardartikel/Aufgaben/Unbarer_Zahlungsverkehr/bankleitzahlen_download.html
+[caliburn_link]: http://caliburnmicro.com/
+[screenshot]: https://raw.githubusercontent.com/chkpnt/Bankleitzahlen-Tool/master/screenshot.png
 [appveyor_build_badge]: https://ci.appveyor.com/api/projects/status/m3raii5wqpxas6v3?svg=true 
 [appveyor_build_link]: https://ci.appveyor.com/project/chkpnt/bankleitzahlen-tool
 [appveyor_tests_badge]: http://teststatusbadge.azurewebsites.net/api/status/chkpnt/bankleitzahlen-tool
